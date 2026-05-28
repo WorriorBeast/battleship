@@ -1,11 +1,15 @@
 import globals from 'globals';
 import pluginJs from '@eslint/js';
+import globals from 'globals';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
 	{
 		languageOptions: {
-			globals: globals.browser,
+			globals: {
+				...globals.browser,
+				...globals.jest,
+			},
 		},
 	},
 	pluginJs.configs.recommended,
@@ -19,6 +23,8 @@ export default [
 		rules: {
 			'no-duplicate-imports': 'error',
 			'dot-notation': 'warn',
+			'no-unused-vars': 'warn',
+			'no-undef': 'warn',
 		},
 	},
 	{
