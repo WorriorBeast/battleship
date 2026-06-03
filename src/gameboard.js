@@ -57,7 +57,13 @@ function gameBoard() {
 		return true;
 	};
 
-	return { placeShip, receiveAttack, board };
+	const isFleetSunk = () => {
+		return placedShips.every((battleship) => {
+			return battleship.isSunk();
+		});
+	};
+
+	return { placeShip, receiveAttack, isFleetSunk, board };
 }
 
 export { gameBoard };

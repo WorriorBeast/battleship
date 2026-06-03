@@ -33,4 +33,21 @@ describe('gameboard', () => {
 		expect(game.receiveAttack([3, 5])).toBeFalsy();
 		expect(game.receiveAttack([1, 1])).toBeFalsy();
 	});
+
+	test('Returns true or false if all ships are sunk', () => {
+		const gameTwo = gameBoard();
+
+		gameTwo.placeShip([0, 0], 1, true);
+		gameTwo.placeShip([3, 2], 2, true);
+		gameTwo.placeShip([5, 6], 3, false);
+
+		gameTwo.receiveAttack([0, 0]);
+		gameTwo.receiveAttack([3, 2]);
+		gameTwo.receiveAttack([4, 2]);
+		gameTwo.receiveAttack([5, 6]);
+		gameTwo.receiveAttack([5, 7]);
+		gameTwo.receiveAttack([5, 8]);
+
+		expect(gameTwo.isFleetSunk()).toBeTruthy();
+	});
 });
