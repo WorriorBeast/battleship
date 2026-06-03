@@ -6,6 +6,7 @@ function gameBoard() {
 		Array(BOARD_SIZE).fill(null),
 	);
 	const placedShips = [];
+	const missedAttacks = new Set();
 
 	const placeShip = (coordinate, length, isHorizontal) => {
 		const [x, y] = coordinate;
@@ -42,7 +43,21 @@ function gameBoard() {
 		return true;
 	};
 
-	return { placeShip, board };
+	const receiveAttack = (coordinate) => {
+		const [x, y] = coordinate;
+
+		if (board[x][y] === null) {
+			missedAttacks.add([x, y]);
+
+			return false;
+		}
+
+		board[x][y].hit();
+
+		return true;
+	};
+
+	return { placeShip, receiveAttack, board };
 }
 
 export { gameBoard };

@@ -26,4 +26,11 @@ describe('gameboard', () => {
 		expect(game.placeShip([-1, 1], 4, false)).toBeFalsy();
 		expect(game.placeShip([11, 5], 4, false)).toBeFalsy();
 	});
+
+	test('Check if ship is hit', () => {
+		expect(game.receiveAttack([3, 3])).toBeTruthy();
+		expect(game.receiveAttack([5, 3])).toBeTruthy();
+		expect(game.receiveAttack([3, 5])).toBeFalsy();
+		expect(game.receiveAttack([1, 1])).toBeFalsy();
+	});
 });
