@@ -1,6 +1,5 @@
 import globals from 'globals';
 import pluginJs from '@eslint/js';
-import globals from 'globals';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -19,7 +18,7 @@ export default [
 		},
 	},
 	{
-		files: ['src/*.js'],
+		files: ['src/*.js', 'test/*.test.js'],
 		rules: {
 			'no-duplicate-imports': 'error',
 			'dot-notation': 'warn',
